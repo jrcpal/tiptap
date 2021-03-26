@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, session, flash, request, jsonify
-import requests, json, random
+import requests, json, random, os
 #from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, SavedBeer, RatedBeer
 from survey import beer_survey as survey
@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 app = Flask(__name__)
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres:///tiptap_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', "postgres:///tiptapbeer")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "needtochangethis123!"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
