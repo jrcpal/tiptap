@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ question.question }}</h1>
+<form action="/answer" method="POST">
+  {% for choice in question.choices %}
+  <p><input type="radio" name="answer" value="{{ choice }}"> {{ choice }}</p>
+  {% endfor %}
+  </select>
+  <button>Continue</button>
+</form>
+
+{% if question_num == 0 %}
+<h4>URG but what's the difference?</h4>
+
+All beer falls into two styles: ales and lagers. Yeast is the difference here. In lagers, yeast gathers at the bottom of the tank during fermentation. Lagers are usually crisp, clean and refreshing. With ales, the yeast gathers toward the top. These beers are aromatic and often fruity.
+<br><br>
+Another difference is timing and temperature. Ales age for just a few weeks at around 40–55°F, while lagers can age for months between 32–45°F.
+<br><br>
+Now let's break it down. ::DJ scratch noises::
+<br><br>
+Of the ales 
+<br><br>
+India pale ale (IPA) is the most popular craft beer style today. Its calling card is hops, a plant related to the marijuana family, cannabaceae. It imparts aromas and flavors like citrus, spice, tropical fruits, pine and berries. IPAs, especially in West Coast or American varieties, are known for bitterness, as hops are added during the hot side of the brewing process.
+<br><br>
+Pale ales are usually lower in abv (alcohol by volume) and hops than an IPA. They have a more balanced malt character, characterized like a biscuit-like flavor. Sierra Nevada Pale Ale is the most famous in the U.S., and many consider it a benchmark of the style.
+<br><br>
+Stouts are dark-colored ales made with roasted barley that impart chocolate or coffee flavors. Some are aged in Bourbon or other wood barrels for deeper and boozier character.
+<br><br>
+Of the lagers 
+<br><br>
+Lager is the most popular beer style in the world. Budweiser, Coors Light, Corona and Michelob Ultra are all lagers. These come from large beer producers, which accounts for roughly 87% of the beer marketplace in the U.S.
+<br><br>
+A Pilsner is an easy-drinking, highly carbonated lager that gets its slight spicy note from hops. It’s named after the city of Pilsen in the Czech Republic, which popularized the style. One of the region’s most famous exports is Pilsner Urquell.
+<br><br>
+OMG but what about sours, or wheats, or gose, or helles? Look, I don't actually know anything about beer. Check out <a href="https://www.winemag.com/2020/09/03/most-popular-style-beer-guide/">this winemag.com page</a>  which is where I copied all this info from anyway. 
+</p>
+
+{% elif question_num == 1 %}
+<h4>Uh, what about ___ ? </h4>
+
+<p>
+  Listen smartypants, why don't you check out this pretty rad <a href="https://thepurebrewer.com/whats-the-beer-flavor-wheel/">flavor wheel</a> by brewing chemist Dr. Morten Meilgaard. It's got all the things like aroma, super funky flavors, and <i>mouthfeel</i>.
+  <br><br>
+  These are the most commonly found flavors in beer according to my very hasty analysis. Check out <a href="https://vinepair.com/wine-blog/the-flavors-in-your-favorite-beers-visualized/">this visual layout</a> for a nice representation of flavors you'd be likely to find in each kind of beer. Also these flavors were the easiest to search for and ended up in the most results when generating a query to the brewery.db API. 
+  <br><br>
+  The "fruit" option covers admittedly a wide range of fruit, from pineapple to cherries to grapefruit. Grapefruit comes up a lot in IPAs. Pilsners will often have hint of lemon. You'll be less likely to find flavors of note in darker beers, such as stouts. 
+  <br><br>
+  Spice covers both herb flavors and notes such as clove, chili, and pepper. 
+  <br><br>
+  Malt, moo goes there? That's a bad joke, and malt is a big umbrella when it comes to flavor. "Malt is essentially the toasted version of any cereal grain. This includes barley, wheat, oat, rye, etc."<a href="https://www.thebrewenthusiast.com/malt">1</a>
+  <br><br>
+  Nope, still talking about malt. "Malted barley and select other grains are also used as the base to make American Whisky". Malt can range from a light, wheat flavor, to darker, more chocolaty or caramely, and sweeter flavor. "How sweet or malty a beer tastes can depend on how much sugar the yeast consumes and how much sugar remains after the fermentation process."<a href="http://gobarley.com/what-does-malt-taste-like/#:~:text=The%20reason%20for%20its%20sweet,malt%20is%20made%20from%20barley.&text=During%20the%20malting%20process%20enzymes,sugars%20like%20maltose%20and%20sucrose.">2</a>
+  <br><br>
+  One more malt tidbit. Check out <a href="https://cowbellbrewing.com/blog/beer-colour-spectrum">the Lovibond spectrum</a> here and learn more about how malt changes the color of beer. While I don't include the SRM (Standard Research Method) for beer listed on this site, it's a related scale used to rate the color of the final beer. 
+  <br><br>
+  Time for chocolate. Hell yeah. More commonly found in stouts or darker ales, chocolate flavor notes can come from ground cocoa or a special chocolate barley malt. 
+  <br><br>
+  More commonly found in IPAs, floral notes bring a lovely complexity to lighter beers. Think of rose petals, lavender, and perfumey aromatics. 
+</p>
+
+{% elif question_num == 2 %}
+<h4>Bitter, like my tears?</h4>
+<p>
+TL:DR - - Beer with higher levels of hops will generally have higher IBU and taste more bitter. The IBU ( International Bitterness Units ) scale doesn't measure how bitter the beer tastes, but rather the amount of iso-alpha acids that come from the flowers of the hop plant. 
+<br><br>
+Bitterness...it's what's <b>HOP</b>pening. But really it's so much more than that. I'll let someone else explain. 
+<br><br>
+- - - - 
+<br><br>
+
+What IBUs measure are the parts per million of isohumulone found in a beer.
+
+Isohumulone is the acid found in hops that gives beer its bitter bite.  Though the IBU scale can be used as a general guideline for taste, with lower IBUs corresponding to less bitterness and vice versa, it's important to note that malt and other flavors can mask the taste of bitterness in beer.
+
+<br><br>
+
+Therefore, a beer with 20 IBUs and a minimal malt character may have significantly more bitter taste than a beer with 60 IBUs and a powerful malt.
+<br><br>
+As a Gravity/Hops Ratio (this delightfully colorful <a href="https://farm9.staticflickr.com/8110/8492802617_e84b6370a9_z.jpg">chart</a> ) shows, the more malt that is used in brewing, the higher the gravity will be, or the amount of fermentable sugar in the brew. The higher the gravity, the more hop bitterness will be masked. Also, no two brewing setups are the same, meaning the utilization, or rate at which flavor and bittering elements of hops dissolve into beer is never the same.
+<br><br>
+In the hop-centric American market, bigger and bolder are often equivocated with being better, making high IBU counts juicy pieces of fruit-- a built-in talking point for all parties. In reality the human palate can only distinguish up to around 110 IBUs before it tucks into its shell and retreats down the esophagus.<a href="https://beerconnoisseur.com/articles/whats-meaning-ibu">3</a>
+
+</p>
+
+{% endif %}
+
+
+
+{% endblock %}

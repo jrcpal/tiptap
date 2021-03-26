@@ -1,0 +1,139 @@
+{% extends 'base.html'  %}
+
+{% block title %}Your Menu{% endblock %}
+
+
+{% block content %}
+<h2>{{user.first_name|title}}'s Menu</h2>
+
+<h1>-------</h1>
+
+<h3>Saved Beers</h3>
+{% for beer in user.beers %}
+
+<div id="saved-beer-div">
+  <p>
+
+    <button class="btn btn-link-info my-1" type="button" data-toggle="collapse" data-target="#{{beer.id}}" aria-expanded="false" aria-controls="collapseExample">
+    {{beer.name}}
+    </button>
+
+    <!-- Collapsed Saved Beer Tile -->
+    <div class="collapse" id="{{beer.id}}">
+    <div class="card card-body">
+    Name: {{beer.name}}
+    <br><br>
+    Description: {{beer.description}}
+    <br><br>
+    IBU: {{beer.ibu}}
+    <br><br>
+    ABV: {{beer.abv}}
+    <br><br>
+    Style: {{beer.style}}
+    
+    Style Description: {{beer.style_description}}
+    <br><br>
+    <form id="{{beer.beer_id}}">
+      <button id="rate-beer" class="btn btn-link btn-info btn-sm pl-0 text-info"
+              data-toggle="modal" 
+              data-target="#rate-modal"
+              data-name=" the {{beer.name}}"
+              data-beer="{{beer.beer_id}}"
+              type="button">
+        Rate this beer
+      </button>
+      
+      <button class="btn btn-link btn-danger btn-sm pl-0 text-danger"
+              formmethod=""
+              formaction="/beer/{{ beer.id }}/delete">
+        Delete Forever
+      </button>
+    </form>
+    </div>
+    </div>
+
+   
+</p>
+</div>
+
+{% endfor %}
+
+<h1>-------</h1>
+
+<h3>Rated Beers</h3>
+{% for beer in user.ratings %}
+<form >
+    <p>{{beer.name}} with rating of {{beer.rating}} .
+      Your notes: {{beer.notes}}
+
+      {% for value in range(beer.rating) %}
+      <i class="fas fa-beer checked"></i>
+      {% endfor %}
+    
+      <button id="rate-beer" class="btn btn-link btn-info btn-sm pl-0 text-info"
+      data-toggle="modal" 
+      data-target="#rate-modal"
+      data-name=" the {{beer.name}}"
+      data-beer="{{beer.beer_id}}"
+      type="button">
+    Edit
+    </button> 
+
+    <button class="btn btn-link btn-danger btn-sm pl-0 text-danger"
+            formmethod=""
+            formaction="/rating/{{ beer.id }}/delete">
+      Delete
+    </button>
+    </p>
+  </form>
+
+
+{% endfor %}
+
+
+
+
+<!-- Rate Modal -->
+<div class="modal fade" id="rate-modal" tabindex="-1" role="dialog" aria-labelledby="beerRating" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="beerRating">How was this beer?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form class="rate-form" action="/rate-beer" method="POST">
+                <div class="form-group">
+                <div>
+                <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                </fieldset>
+                </div>
+            </br>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="formNote" name="notes" placeholder="What did you think?">
+                </div>
+                <div class="hidden">
+                    <input type="hidden" name="data" value="">
+                  </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="submit-rating" id="submit" type="submit" class="btn btn-primary">Save Rating</button>
+                  </div>
+              </form>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

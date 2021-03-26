@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Here is your beer{% if session['username'] %}, {{ session["username"]}} {% endif %}</h1>
+
+    <h6>Some delicious <b>{{responses[0]|lower}}</b>, likely to have <b>{{responses[1]|lower}}</b> notes{% if responses[2][0] != "A" %} and <b>{{responses[2]|lower}}</b>{% else %}{% endif %}. 
+    </h6>
+
+<form action="/save-beer" method="POST">
+<ul>
+    
+    <li>Beer Name: {{beer.name}}</li>
+    <li>Description: 
+        {{beer.description}}</li>
+    <li>IBU: 
+        {{beer.ibu}}</li>
+    <li>ABV: 
+        {{beer.abv}}</li>
+    <li>Beer Style: {{beer.style.name}}</li>
+    <li>Beer Style Description: {{beer.style.description}}</li>
+</ul>
+    {% if session['username'] %}
+    <button type="submit">Save this beer to your menu</button>
+
+    {% else %}
+    <button type="submit" formaction="/login">Login to save this beer</button>
+    <button type="submit" formaction="/register">Register to sign up and save this beer</button>
+    {% endif %}
+
+    <button type="submit" formaction="/" formmethod="GET">Explore more beer</button>
+
+    <input type="hidden" name="beer_id" value="{{beer.id}}">
+    <input type="hidden" name="name" value="{{beer.name}}">
+    <input type="hidden" name="description" value="{{beer.description}}">
+    <input type="hidden" name="ibu" value="{{beer.ibu}}">
+    <input type="hidden" name="abv" value="{{beer.abv}}">
+    <input type="hidden" name="style" value="{{beer.style.name}}">
+    <input type="hidden" name="style_description" value="{{beer.style.description}}">
+
+</form>
+
+<!--
+display style 
+-->
+
+{% if matching_beers|length > 0 %}
+
+<p>You might also love these {{beer.style.name}}s 
+    <ul>{% for beer in matching_beers[:3] %}
+    <li>{{beer.name}}</li>
+    {% endfor %}
+</ul></p>
+{% endif %}
+
+
+{% endblock %}

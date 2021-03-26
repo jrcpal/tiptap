@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block title %}Edit Rating{% endblock %}
+
+{% block content %}
+<div class="card" style="width: 40rem">
+<div class="card-body">
+<h2 class="card-title">Edit Rating</h2>
+<form  method="POST">
+    <div class="form-group">
+        <label for="">Rating</label>
+        <input class="form-control" type="text" name="rating" value={{rating.rating}}>
+    </div>
+    <div class="form-group">
+        <label for="">Notes</label>
+        <input class="form-control" type="text" name="notes" value={{user.last_name}}>
+    </div>
+    <input class="btn btn-primary mb-2" type="submit" value="Update Rating">
+</form>
+</div>
+<a class="text-decoration-none card-footer" href="/users/{{username}}">Go Back</a>
+</div>
+
+
+{% endblock %}

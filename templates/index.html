@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+
+
+{% block content %}
+<h2>Welcome to TipTap! </h2>
+<h5>Discover new beer</h5>
+
+    <p>
+    {{ survey.instructions }}
+  </p>
+
+    <form id="beer-form" action="/begin" method="POST">
+    <button>Let's go baybeh!</button>
+  </form> 
+
+
+
+{% endblock %}
