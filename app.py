@@ -50,7 +50,7 @@ def home_page():
 
     if "username" in session:
        username = session['username']
-       
+    
        return render_template('index.html', survey=survey, username=username)
 
     return render_template('index.html', survey=survey)
