@@ -32,7 +32,7 @@ beer_survey = Survey(
                  ["IPA", "Pale Ale", "Stout", "Lager", "Pilsner"]),
         Question("Select a flavor",
                 ["Fruit", "Spice", "Malt", "Chocolate", "Floral"]),
-        Question("Select a bittnerness level",
+        Question("Select a bitterness level",
         ["No bitter taste", "Mild or noticeable bitterness", "Strong bitterness", "Any level / No preference"])
     ])
 
