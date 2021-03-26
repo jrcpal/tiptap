@@ -1,7 +1,6 @@
-# tiptap
+# Thanks for coming to my project
 
-# API Endpoint
-https://sandbox-api.brewerydb.com/v2/
+# Completely out of scope, but the end goal was to return beer results that a user could click and order on a site like Drizzly. 
 
-# API key
-00e5f08fc31d4f272660c804487c1b7c
+# API endpoint from brewerydb - https://sandbox-api.brewerydb.com/v2/
+
